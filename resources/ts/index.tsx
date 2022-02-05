@@ -1,28 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const App = () => {
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">
-                            React導入できたわな？？
-                        </div>
-
-                        <div className="card-body">
-                            I'm an example component!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default App;
+import { BrowserRouter } from "react-router-dom";
+import MainRoute from "./route";
 
 if (document.getElementById("app")) {
-    ReactDOM.render(<App />, document.getElementById("app"));
+    ReactDOM.render(
+        <BrowserRouter>
+            <MainRoute />
+        </BrowserRouter>,
+        document.getElementById("app")
+    );
 }
