@@ -10,10 +10,9 @@ const Layout = () => {
     return (
         <>
             <TodoAppBar />
-            <Box sx={{ py: 10 }}>
+            <Box sx={{ py: 10, backgroundColor: "#3399FF" }}>
                 <Outlet />
             </Box>
-
             <Footer />
         </>
     );

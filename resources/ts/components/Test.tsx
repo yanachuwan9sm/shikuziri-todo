@@ -1,119 +1,330 @@
-import { Button, Stack, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
+import {
+    Button,
+    Container,
+    Checkbox,
+    Grid,
+    IconButton,
+    Input,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Stack,
+    TextField,
+    Typography,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    Avatar,
+} from "@mui/material";
+import { Box, display } from "@mui/system";
+import { grey, green, red } from "@mui/material/colors";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const Test = () => {
+import AddIcon from "@mui/icons-material/Add";
+// import { CheckBox } from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import TaskIcon from "@mui/icons-material/Task";
+import CloseIcon from "@mui/icons-material/Close";
+import { ThemeProvider } from "@emotion/react";
+import { RowdiesFont } from "../theme";
+import { CheckBox } from "@mui/icons-material";
+
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import TwitterIcon from "@mui/icons-material/Twitter";
+
+export interface TaskState {
+    id: number;
+    title: string;
+    done_flag: boolean;
+    created_at: Date;
+}
+
+const Task: React.FC<{ title: string }> = ({ title }) => {
     return (
         <>
-            <Box display="flex" flexDirection="column">
-                <Typography variant="h2" sx={{ justifyItems: "center" }}>
-                    今日のしくじり
-                </Typography>
-                <Stack spacing={2}>
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">犬の掃除</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <Card
+                sx={{
+                    mx: 2,
+                    my: 1.5,
+                    bgcolor: grey[100],
+                    borderRadius: 8,
+                }}
+            >
+                <CardContent>
+                    <Box sx={{ display: "flex", flexGrow: 1 }}>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Typography variant="body2" color="text.secondary">
+                                guest
+                            </Typography>
+                            <Typography
+                                gutterBottom
+                                variant="h6"
+                                component="div"
+                            >
+                                {title}
+                            </Typography>
+                        </Box>
+                        <IconButton
+                            size="medium"
+                            edge="end"
+                            aria-label="delete"
+                        >
+                            <TwitterIcon />
+                        </IconButton>
+                    </Box>
+                </CardContent>
+            </Card>
+        </>
+    );
+};
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+const Test = () => {
+    /*
+    | 全ユーザーの全タスクの状態を持つステート
+    */
+    const [tasks, setTasks] = useState([]);
+    /*
+    | 今日のタスクの状態を持つステート
+    */
+    const [todayTasks, setTodayTasks] = useState([]);
+    /*
+    | 新しく追加するタスクの状態を持つステート
+    */
+    const [newTodoTitle, setNewTodoTitle] = useState<String>();
+    /*
+    | 今日のタスクの状態を持つステート
+    */
+    const [editTodoTitle, setTodoTitle] = useState<String>();
+    /*
+    | 編集中かどうかを判定するフラグの状態を持つステート
+    */
+    const [isEdit, setIsEdit] = useState<Boolean>(false);
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    useEffect(() => {
+        getTasksData();
+        getTodayTasksData();
+    }, []);
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    const getTasksData = async () => {
+        try {
+            const res = await axios.get("/api/tasks");
+            setTasks(res.data);
+        } catch (err: any) {
+            const { status, statusText } = err.response;
+            console.log(`Error! HTTP Status: ${status} ${statusText}`);
+        }
+    };
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    const getTodayTasksData = async () => {
+        try {
+            const res = await axios.get("/api/tasks/today");
+            setTodayTasks(res.data);
+        } catch (err: any) {
+            const { status, statusText } = err.response;
+            console.log(`Error! HTTP Status: ${status} ${statusText}`);
+        }
+    };
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    const createTodo = async () => {
+        await axios
+            .post("/api/task/create", {
+                title: newTodoTitle,
+            })
+            .then((res) => {
+                setTodayTasks(res.data);
+                setNewTodoTitle("");
+            })
+            .catch((err: any) => {
+                const { status, statusText } = err.response;
+                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+            });
+    };
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    const ToggleDoneTask = async (taskId: number, done_flag: boolean) => {
+        if (taskId === undefined || done_flag === undefined) {
+            return;
+        }
 
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-8">
-                                <div className="card">
-                                    <div className="card-header">
-                                        ユーザー名
-                                    </div>
-                                    <div className="card-body">英語の勉強</div>
-                                </div>
+        await axios
+            .post("/api/task/update_flag", {
+                id: taskId,
+                done_flag: done_flag,
+            })
+            .then((res) => {
+                setTodayTasks(res.data);
+            })
+            .catch((err: any) => {
+                const { status, statusText } = err.response;
+                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+            });
+    };
+
+    const deleteTask = async (taskId: number) => {
+        await axios
+            .post("/api/delete", {
+                id: taskId,
+            })
+            .then((res) => {
+                setTodayTasks(res.data);
+            })
+            .catch((err: any) => {
+                const { status, statusText } = err.response;
+                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+            });
+    };
+
+    return (
+        <>
+            <Box
+                sx={{
+                    width: "100%",
+                    maxWidth: "700px",
+                    m: "auto",
+                }}
+            >
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignContent="center"
+                >
+                    <Box sx={{ py: 10 }}>
+                        <ThemeProvider theme={RowdiesFont}>
+                            <Typography
+                                variant="h3"
+                                component="div"
+                                align="center"
+                                color={grey[50]}
+                                sx={{ fontWeight: "bold" }}
+                            >
+                                Today`s Todo
+                            </Typography>
+                        </ThemeProvider>
+
+                        <Box
+                            sx={{
+                                py: 5,
+                                px: 3,
+                                my: 3,
+                                mx: 2,
+                                bgcolor: grey[50],
+                                borderRadius: 10,
+                            }}
+                        >
+                            <Box
+                                alignItems="center"
+                                sx={{ mt: "20px", mb: "10px" }}
+                            >
+                                {/* Todo create text input */}
+                                <Input
+                                    value={newTodoTitle}
+                                    onChange={(event: {
+                                        target: { value: string };
+                                    }) => setNewTodoTitle(event.target.value)}
+                                    placeholder="New Todo"
+                                    size="medium"
+                                />
+                                {/* Todo create button */}
+                                <Button
+                                    variant="outlined"
+                                    // size="large"
+                                    sx={{ color: "#208AEC" }}
+                                    onClick={createTodo}
+                                    startIcon={<AddIcon />}
+                                >
+                                    Add
+                                </Button>
+                            </Box>
+
+                            <div>
+                                {/* Todo read results list */}
+                                {todayTasks !== null &&
+                                    todayTasks !== undefined &&
+                                    todayTasks.length > 0 &&
+                                    todayTasks.map((elem: TaskState) => (
+                                        <>
+                                            <ListItem
+                                                key={elem.id}
+                                                secondaryAction={
+                                                    <>
+                                                        <IconButton
+                                                            edge="end"
+                                                            aria-label="delete"
+                                                            onClick={() =>
+                                                                deleteTask(
+                                                                    elem.id
+                                                                )
+                                                            }
+                                                        >
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </>
+                                                }
+                                                disablePadding
+                                            >
+                                                <ListItemButton
+                                                    role={undefined}
+                                                    onClick={() => {
+                                                        ToggleDoneTask(
+                                                            elem.id,
+                                                            !elem.done_flag
+                                                        );
+                                                    }}
+                                                    dense
+                                                >
+                                                    <ListItemIcon>
+                                                        {elem.done_flag ? (
+                                                            <TaskAltIcon
+                                                                sx={{
+                                                                    color: green[500],
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <WorkOutlineIcon
+                                                                sx={{
+                                                                    color: red[500],
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </ListItemIcon>
+                                                    <ListItemText
+                                                        id={`${elem.id}`}
+                                                        primary={`${elem.title}`}
+                                                    />
+                                                </ListItemButton>
+                                            </ListItem>
+                                        </>
+                                    ))}
                             </div>
-                        </div>
-                    </div>
-                </Stack>
+                        </Box>
+                    </Box>
+
+                    <ThemeProvider theme={RowdiesFont}>
+                        <Typography
+                            variant="h3"
+                            component="div"
+                            align="center"
+                            color={grey[50]}
+                            sx={{ fontWeight: "bold" }}
+                        >
+                            Shikuziri Todo
+                        </Typography>
+                    </ThemeProvider>
+
+                    {tasks ? (
+                        tasks.map((task: TaskState) => (
+                            <Task title={task.title} />
+                        ))
+                    ) : (
+                        <>NO DATA</>
+                    )}
+                </Box>
             </Box>
         </>
     );

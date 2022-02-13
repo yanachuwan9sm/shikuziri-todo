@@ -1,6 +1,23 @@
-import { AppBar, Slide, Toolbar, Typography } from "@mui/material";
-import { useScrollTrigger } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+
+import {
+    AppBar,
+    Button,
+    Box,
+    Divider,
+    Slide,
+    Stack,
+    Toolbar,
+    Typography,
+    useScrollTrigger,
+    ThemeProvider,
+    createTheme,
+} from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { grey } from "@mui/material/colors";
+import { ZenKurenaidoFont } from "../theme";
+
+import axios from "axios";
 
 interface PROPS {
     window?: () => Window;
@@ -19,18 +36,70 @@ const HideOnScroll = ({ children, window }: PROPS) => {
     );
 };
 
+const theme = createTheme({
+    palette: {
+        mode: "dark",
+        primary: {
+            main: "#1976d2",
+        },
+    },
+});
+
+export type OAuthRedirect = {
+    redirectUrl: string;
+};
+
 const TodoAppBar = () => {
+    const [loading, setLoading] = useState(false);
+
+    const twitterLogin = () => {
+        setLoading(true);
+
+        axios.get("/login/twitter").then((res) => {
+            console.log(res);
+            //window.location.href = res.data.redirect_url;
+        });
+
+        //window.location.href = data;
+
+        // const OAuthUrl = getOAuthUrl("twitter");
+        // window.location.href = OAuthUrl;
+        // console.log(OAuthUrl);
+    };
+
     return (
         <>
-            <HideOnScroll>
-                <AppBar>
-                    <Toolbar>
-                        <Typography variant="h6" component="div">
-                            しくじりTODO
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </HideOnScroll>
+            <ThemeProvider theme={theme}>
+                <HideOnScroll>
+                    <Box sx={{ flexGrow: 1 }}>
+                        <AppBar>
+                            <Toolbar>
+                                <ThemeProvider theme={ZenKurenaidoFont}>
+                                    <Typography
+                                        variant="h5"
+                                        component="div"
+                                        sx={{ flexGrow: 1 }}
+                                    >
+                                        しくじりTODO
+                                    </Typography>
+
+                                    <Stack direction="row" spacing={1}>
+                                        <Button color="inherit">ABOUT</Button>
+
+                                        <LoadingButton
+                                            color="inherit"
+                                            loading={loading}
+                                            onClick={twitterLogin}
+                                        >
+                                            Login
+                                        </LoadingButton>
+                                    </Stack>
+                                </ThemeProvider>
+                            </Toolbar>
+                        </AppBar>
+                    </Box>
+                </HideOnScroll>
+            </ThemeProvider>
         </>
     );
 };
