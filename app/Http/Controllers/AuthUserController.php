@@ -14,7 +14,8 @@ class AuthUserController extends Controller
     */
     
     public function getProviderOAuthURL(){
-        $redirectUrl = Socialite::driver('twitter')->redirect()->getTargetUrl();
+        $redirectUrl = Socialite::driver('twitter')
+        ->redirect()->getTargetUrl();
         return response()->json([
             'redirect_url' => $redirectUrl,
         ]);
