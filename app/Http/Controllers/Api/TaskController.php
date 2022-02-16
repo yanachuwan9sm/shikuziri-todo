@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
     public function index()
     {
         $tasks = Task::all();
+        return response()->json($tasks,200);
+    }
+
+    public function shikuziriTodo()
+    {
+        $yesterday = Carbon::now()->subDay()->format('Y-m-d');
+        $tasks = Task::whereDate('created_at',$yesterday)
+                       ->where('done_flag', false)
+                       ->orderBy('created_at', 'asc')->get();
         return response()->json($tasks,200);
     }
 

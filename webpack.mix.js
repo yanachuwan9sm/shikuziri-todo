@@ -11,10 +11,6 @@ const mix = require("laravel-mix");
  |
  */
 
-mix
-    // .react()
-    .ts("resources/ts/index.tsx", "public/js")
+mix.ts("resources/ts/index.tsx", "public/js")
     .sass("resources/sass/app.scss", "public/css")
     .version();
-//npm run devをしてもキャッシュが残っていて変更が反映されない場合が
-//あるため .version()を追加する

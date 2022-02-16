@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\AuthUser;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
-class AuthUserController extends Controller
+class LoginController extends Controller
 {
-    /*
-    | 認証プロバイダーのOAuth認可画面URL取得API
-    */  
     public function getProviderOAuthURL(){
         $redirectUrl = Socialite::driver('twitter')
         ->redirect()->getTargetUrl();
@@ -19,11 +19,9 @@ class AuthUserController extends Controller
             'redirect_url' => $redirectUrl,
         ]);
     }
-
-    /*
-    | 取得したデータを保存する
-    */
+    
     public function handleCallBack(){
+
         $social_user = Socialite::driver('twitter')->user();
         $user = AuthUser::where('user_id', $social_user->getId())->first();
 
@@ -38,22 +36,18 @@ class AuthUserController extends Controller
             $new_user = AuthUser::where('user_id', $social_user->getId())->first();
 
          
-            //Auth::login($new_user->id);
+            Auth::login($new_user->id);
             //return $new_user;
 
             return redirect('/');
         }
         else //login
         {
-          //Auth::login($user->id);
+          Auth::login($user->id);
           //return $user;
 
             return redirect('/');
         }
     }
 
-    public function getUser()
-    {
-
-    }
 }

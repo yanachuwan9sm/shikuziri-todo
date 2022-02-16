@@ -22,10 +22,10 @@ import {
 import { Box, display } from "@mui/system";
 import { grey, green, red } from "@mui/material/colors";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AddIcon from "@mui/icons-material/Add";
-// import { CheckBox } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TaskIcon from "@mui/icons-material/Task";
@@ -45,7 +45,10 @@ export interface TaskState {
     created_at: Date;
 }
 
-const Task: React.FC<{ title: string }> = ({ title }) => {
+const Task: React.FC<{ title: string; sharebuttonhandle: () => void }> = ({
+    title,
+    sharebuttonhandle,
+}) => {
     return (
         <>
             <Card
@@ -74,6 +77,7 @@ const Task: React.FC<{ title: string }> = ({ title }) => {
                             size="medium"
                             edge="end"
                             aria-label="delete"
+                            onClick={sharebuttonhandle}
                         >
                             <TwitterIcon />
                         </IconButton>
@@ -98,13 +102,11 @@ const Test = () => {
     */
     const [newTodoTitle, setNewTodoTitle] = useState<String>();
     /*
-    | 今日のタスクの状態を持つステート
-    */
-    const [editTodoTitle, setTodoTitle] = useState<String>();
-    /*
     | 編集中かどうかを判定するフラグの状態を持つステート
     */
     const [isEdit, setIsEdit] = useState<Boolean>(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getTasksData();
@@ -113,7 +115,7 @@ const Test = () => {
 
     const getTasksData = async () => {
         try {
-            const res = await axios.get("/api/tasks");
+            const res = await axios.get("/api/tasks/shikuziri");
             setTasks(res.data);
         } catch (err: any) {
             const { status, statusText } = err.response;
@@ -195,6 +197,7 @@ const Test = () => {
                     alignContent="center"
                 >
                     <Box sx={{ py: 10 }}>
+                        {/* Today`s Todo title */}
                         <ThemeProvider theme={RowdiesFont}>
                             <Typography
                                 variant="h3"
@@ -243,7 +246,7 @@ const Test = () => {
                             </Box>
 
                             <div>
-                                {/* Todo read results list */}
+                                {/* Todo list */}
                                 {todayTasks !== null &&
                                     todayTasks !== undefined &&
                                     todayTasks.length > 0 &&
@@ -319,7 +322,10 @@ const Test = () => {
 
                     {tasks ? (
                         tasks.map((task: TaskState) => (
-                            <Task title={task.title} />
+                            <Task
+                                title={task.title}
+                                sharebuttonhandle={() => navigate("/share")}
+                            />
                         ))
                     ) : (
                         <>NO DATA</>

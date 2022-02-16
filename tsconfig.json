@@ -12,9 +12,12 @@
         "moduleResolution": "node",
         "target": "es6",
         "lib": ["es2016", "dom"],
-        "allowSyntheticDefaultImports": true // エクスポートしないモジュールからのインポートを許可する。これでtypescriptでreactをインポートするときにimport React from 'react';を使えるようになる
+        "allowSyntheticDefaultImports": true, // エクスポートしないモジュールからのインポートを許可する。これでtypescriptでreactをインポートするときにimport React from 'react';を使えるようになる
+        "typeRoots": ["types", "node_modules/@types"]
     },
     "include": [
-        "resources/ts/**/*" // TypeScriptのソース配置場所
+        "resources/ts/**/*", // TypeScriptのソース配置場所
+        "types/**/*",
+        "resources/img"
     ]
 }

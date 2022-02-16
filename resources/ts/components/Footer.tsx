@@ -1,6 +1,8 @@
 import React from "react";
-import { makeStyles, styled } from "@mui/material";
+import { makeStyles, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { ZenKurenaidoFont } from "../theme";
+import { ThemeProvider } from "@emotion/react";
 
 const Footer = () => {
     return (
@@ -10,11 +12,15 @@ const Footer = () => {
                     backgroundColor: "#0f2350",
                     color: "#ebf6f7",
                     width: "100%",
-                    // position: "absolute",
                     bottom: 0,
+                    py: 3,
                 }}
             >
-                Footer
+                <ThemeProvider theme={ZenKurenaidoFont}>
+                    <Typography variant="h6" align="center">
+                        © Copyright 2022 しくじりTodo All rights reserved.
+                    </Typography>
+                </ThemeProvider>
             </Box>
         </>
     );

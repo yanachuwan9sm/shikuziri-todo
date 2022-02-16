@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
     AppBar,
@@ -52,20 +53,21 @@ export type OAuthRedirect = {
 const TodoAppBar = () => {
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     const twitterLogin = () => {
         setLoading(true);
-
         axios.get("/login/twitter").then((res) => {
             console.log(res);
-            //window.location.href = res.data.redirect_url;
+            window.location.href = res.data.redirect_url;
         });
-
-        //window.location.href = data;
-
-        // const OAuthUrl = getOAuthUrl("twitter");
-        // window.location.href = OAuthUrl;
-        // console.log(OAuthUrl);
     };
+
+    useEffect(() => {
+        axios.get("/api/user").then((res) => {
+            console.log(res);
+        });
+    }, []);
 
     return (
         <>
@@ -84,7 +86,12 @@ const TodoAppBar = () => {
                                     </Typography>
 
                                     <Stack direction="row" spacing={1}>
-                                        <Button color="inherit">ABOUT</Button>
+                                        <Button
+                                            color="inherit"
+                                            onClick={() => navigate("/about")}
+                                        >
+                                            ABOUT
+                                        </Button>
 
                                         <LoadingButton
                                             color="inherit"
