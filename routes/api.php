@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::group(['middlewate' => 'api'], function(){
     Route::get('tasks','App\Http\Controllers\Api\TaskController@index');
@@ -29,8 +26,15 @@ Route::group(['middlewate' => 'api'], function(){
     Route::post('delete', 'App\Http\Controllers\Api\TaskController@delete');
 });
 
-Route::get('/user', function () {
-    return Auth::user();
-})->middleware('auth');
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+// Route::middleware('auth:api')->get('/user', function () {
+//      return Auth::user();
+// });
+
+
 
 

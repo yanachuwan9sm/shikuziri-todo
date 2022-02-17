@@ -167,6 +167,51 @@ const About = () => {
                             </Box>
                         </Grid>
                     </Grid>
+
+                    <Grid
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            gap: "30px",
+                            py: 4,
+                        }}
+                    >
+                        <Grid
+                            item
+                            sx={{
+                                minWidth: "350px",
+                                maxWidth: "350px",
+                            }}
+                        >
+                            <img
+                                src={`${window.location.origin}/img/shikuziriImage.png`}
+                                alt="image"
+                                width="350px"
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            sx={{ minWidth: "350px", maxWidth: "350px" }}
+                        >
+                            <Box sx={{ flexWrap: "wrap" }}>
+                                <Typography
+                                    variant="h4"
+                                    component="div"
+                                    sx={{ pb: 3 }}
+                                >
+                                    しくじりを共有しよう
+                                </Typography>
+                                <Typography variant="body1">
+                                    やっぱりサービスを使ってもらうにはOGP活用したSNSシェアが必須だと思いますので、
+                                    Twitter共有ボタンから簡単に共有出来る機能を追加予定です。
+                                    (なんせSPAで動的なOGP生成をする技能が足りなかったので、
+                                    いずれ Next.js × laravel で挑戦します、、、)
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    </Grid>
                 </ThemeProvider>
             </Box>
         </>

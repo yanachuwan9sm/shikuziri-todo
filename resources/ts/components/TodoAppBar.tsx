@@ -57,15 +57,21 @@ const TodoAppBar = () => {
 
     const twitterLogin = () => {
         setLoading(true);
-        axios.get("/login/twitter").then((res) => {
+
+        // axios.get("/login/twitter").then((res) => {
+        //     console.log(res);
+        //     window.location.href = res.data.redirect_url;
+        // });
+
+        axios.get("/login/twitter", { withCredentials: true }).then((res) => {
             console.log(res);
             window.location.href = res.data.redirect_url;
         });
     };
 
     useEffect(() => {
-        axios.get("/api/user").then((res) => {
-            console.log(res);
+        axios.get("/api/user", { withCredentials: true }).then((res) => {
+            console.log(res.data);
         });
     }, []);
 

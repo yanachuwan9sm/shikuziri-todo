@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\AuthUser;
+use App\Models\User;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class LoginController extends Controller
 {
@@ -23,30 +26,30 @@ class LoginController extends Controller
     public function handleCallBack(){
 
         $social_user = Socialite::driver('twitter')->user();
-        $user = AuthUser::where('user_id', $social_user->getId())->first();
+        $user = User::where('twitter_id', $social_user->getId())->first();
 
         if(!$user)//create AuthUser
         {
-             AuthUser::create([
+             User::create([
              'name' => ($social_user->getName()) ? $social_user->getName() : $social_user->getNickname(),
-             'user_id' => $social_user->getId(),
-             'user_avatar' => $social_user->getAvatar(),
+             'twitter_id' => $social_user->getId(),
+             'avatar' => $social_user->getAvatar(),
             ]);
 
-            $new_user = AuthUser::where('user_id', $social_user->getId())->first();
+            $new_user = User::where('twitter_id', $social_user->getId())->first();
 
-         
-            Auth::login($new_user->id);
-            //return $new_user;
+            if(Auth::loginUsingId($new_user->id,true)){
+                return redirect('/');
+            }
 
-            return redirect('/');
+            throw new Exception('ログインに失敗しました。再度お試しください');          
         }
         else //login
         {
-          Auth::login($user->id);
-          //return $user;
-
-            return redirect('/');
+            if(Auth::loginUsingId($user->id,true)){
+                return redirect('/');
+            }
+            throw new Exception('ログインに失敗しました。再度お試しください');      
         }
     }
 

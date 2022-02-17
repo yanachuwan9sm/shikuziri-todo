@@ -13,32 +13,26 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * 値を代入を許可するフィールドを設定
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'twitter_id',
+        'avatar',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * データを取得しないフィールドを設定
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        // 'password',
+        // 'remember_token',
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * DBから取得したデータを自動変換
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
     ];
 }
