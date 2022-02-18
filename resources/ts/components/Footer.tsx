@@ -18,7 +18,8 @@ const Footer = () => {
             >
                 <ThemeProvider theme={ZenKurenaidoFont}>
                     <Typography variant="h6" align="center">
-                        © Copyright 2022 しくじりTodo All rights reserved.
+                        © Copyright 2022 しくじりTodo <br />
+                        All rights reserved.
                     </Typography>
                 </ThemeProvider>
             </Box>
