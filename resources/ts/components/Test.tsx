@@ -23,6 +23,8 @@ import { Box, display } from "@mui/system";
 import { grey, green, red } from "@mui/material/colors";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { selectUser } from "../features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -89,6 +91,9 @@ const Task: React.FC<{ title: string; sharebuttonhandle: () => void }> = ({
 };
 
 const Test = () => {
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
     /*
     | 全ユーザーの全タスクの状態を持つステート
     */
@@ -137,6 +142,7 @@ const Test = () => {
         await axios
             .post("/api/task/create", {
                 title: newTodoTitle,
+                user_id: user.id,
             })
             .then((res) => {
                 setTodayTasks(res.data);
@@ -210,102 +216,114 @@ const Test = () => {
                             </Typography>
                         </ThemeProvider>
 
-                        <Box
-                            sx={{
-                                py: 5,
-                                px: 3,
-                                my: 3,
-                                mx: 2,
-                                bgcolor: grey[50],
-                                borderRadius: 10,
-                            }}
-                        >
-                            <Box
-                                alignItems="center"
-                                sx={{ mt: "20px", mb: "10px" }}
-                            >
-                                {/* Todo create text input */}
-                                <Input
-                                    value={newTodoTitle}
-                                    onChange={(event: {
-                                        target: { value: string };
-                                    }) => setNewTodoTitle(event.target.value)}
-                                    placeholder="New Todo"
-                                    size="medium"
-                                />
-                                {/* Todo create button */}
-                                <Button
-                                    variant="outlined"
-                                    // size="large"
-                                    sx={{ color: "#208AEC" }}
-                                    onClick={createTodo}
-                                    startIcon={<AddIcon />}
+                        {user.id ? (
+                            <>
+                                <Box
+                                    sx={{
+                                        py: 5,
+                                        px: 3,
+                                        my: 3,
+                                        mx: 2,
+                                        bgcolor: grey[50],
+                                        borderRadius: 10,
+                                    }}
                                 >
-                                    Add
-                                </Button>
-                            </Box>
+                                    <Box
+                                        alignItems="center"
+                                        sx={{ mt: "20px", mb: "10px" }}
+                                    >
+                                        {/* Todo create text input */}
+                                        <Input
+                                            value={newTodoTitle}
+                                            onChange={(event: {
+                                                target: { value: string };
+                                            }) =>
+                                                setNewTodoTitle(
+                                                    event.target.value
+                                                )
+                                            }
+                                            placeholder="New Todo"
+                                            size="medium"
+                                        />
+                                        {/* Todo create button */}
+                                        <Button
+                                            variant="outlined"
+                                            // size="large"
+                                            sx={{ color: "#208AEC" }}
+                                            onClick={createTodo}
+                                            startIcon={<AddIcon />}
+                                        >
+                                            Add
+                                        </Button>
+                                    </Box>
 
-                            <div>
-                                {/* Todo list */}
-                                {todayTasks !== null &&
-                                    todayTasks !== undefined &&
-                                    todayTasks.length > 0 &&
-                                    todayTasks.map((elem: TaskState) => (
-                                        <>
-                                            <ListItem
-                                                key={elem.id}
-                                                secondaryAction={
+                                    <div>
+                                        {/* Todo list */}
+                                        {todayTasks !== null &&
+                                            todayTasks !== undefined &&
+                                            todayTasks.length > 0 &&
+                                            todayTasks.map(
+                                                (elem: TaskState) => (
                                                     <>
-                                                        <IconButton
-                                                            edge="end"
-                                                            aria-label="delete"
-                                                            onClick={() =>
-                                                                deleteTask(
-                                                                    elem.id
-                                                                )
+                                                        <ListItem
+                                                            key={elem.id}
+                                                            secondaryAction={
+                                                                <>
+                                                                    <IconButton
+                                                                        edge="end"
+                                                                        aria-label="delete"
+                                                                        onClick={() =>
+                                                                            deleteTask(
+                                                                                elem.id
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <DeleteIcon />
+                                                                    </IconButton>
+                                                                </>
                                                             }
+                                                            disablePadding
                                                         >
-                                                            <DeleteIcon />
-                                                        </IconButton>
+                                                            <ListItemButton
+                                                                role={undefined}
+                                                                onClick={() => {
+                                                                    ToggleDoneTask(
+                                                                        elem.id,
+                                                                        !elem.done_flag
+                                                                    );
+                                                                }}
+                                                                dense
+                                                            >
+                                                                <ListItemIcon>
+                                                                    {elem.done_flag ? (
+                                                                        <TaskAltIcon
+                                                                            sx={{
+                                                                                color: green[500],
+                                                                            }}
+                                                                        />
+                                                                    ) : (
+                                                                        <WorkOutlineIcon
+                                                                            sx={{
+                                                                                color: red[500],
+                                                                            }}
+                                                                        />
+                                                                    )}
+                                                                </ListItemIcon>
+                                                                <ListItemText
+                                                                    id={`${elem.id}`}
+                                                                    primary={`${elem.title}`}
+                                                                />
+                                                            </ListItemButton>
+                                                        </ListItem>
                                                     </>
-                                                }
-                                                disablePadding
-                                            >
-                                                <ListItemButton
-                                                    role={undefined}
-                                                    onClick={() => {
-                                                        ToggleDoneTask(
-                                                            elem.id,
-                                                            !elem.done_flag
-                                                        );
-                                                    }}
-                                                    dense
-                                                >
-                                                    <ListItemIcon>
-                                                        {elem.done_flag ? (
-                                                            <TaskAltIcon
-                                                                sx={{
-                                                                    color: green[500],
-                                                                }}
-                                                            />
-                                                        ) : (
-                                                            <WorkOutlineIcon
-                                                                sx={{
-                                                                    color: red[500],
-                                                                }}
-                                                            />
-                                                        )}
-                                                    </ListItemIcon>
-                                                    <ListItemText
-                                                        id={`${elem.id}`}
-                                                        primary={`${elem.title}`}
-                                                    />
-                                                </ListItemButton>
-                                            </ListItem>
-                                        </>
-                                    ))}
-                            </div>
-                        </Box>
+                                                )
+                                            )}
+                                    </div>
+                                </Box>
+                            </>
+                        ) : (
+                            <>ログインしてね</>
+                        )}
                     </Box>
 
                     <ThemeProvider theme={RowdiesFont}>

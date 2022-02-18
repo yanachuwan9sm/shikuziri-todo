@@ -34,6 +34,7 @@ class TaskController extends Controller
     {
         $task = new Task;
         $task->title = $request->title;
+        $task->user_id = $request->user_id;
         $task->save();
 
         $tasks = Task::WhereDate('created_at', date("Y-m-d") )->orderBy('created_at', 'asc')->get();
