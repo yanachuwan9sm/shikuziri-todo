@@ -123,12 +123,11 @@ const TodoAppBar = () => {
         await axios
             .post("api/logout")
             .then((response) => {
-                console.log(response);
                 localStorage.removeItem("auth");
                 dispatch(logout());
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
 

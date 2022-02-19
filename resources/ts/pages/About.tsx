@@ -1,24 +1,10 @@
-import {
-    Card,
-    CardActionArea,
-    CardContent,
-    Divider,
-    Grid,
-    Paper,
-    Typography,
-} from "@mui/material";
-import { Box, lineHeight } from "@mui/system";
 import React from "react";
 import styled from "@emotion/styled";
 
-import { makeStyles } from "@mui/material";
+import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { ThemeProvider } from "@mui/material";
 import { ZenKurenaidoFont } from "../theme";
-import { RowdiesFont } from "../theme";
-
-import todoImage from "../../images/todoimage.jpg";
-
-import todoImg from "../../images/todoImage.png";
 
 const NoteComponent = styled("div")({
     lineHeight: "2.5em",
@@ -31,7 +17,7 @@ const MarkerOrange = styled("span")({
     background: "linear-gradient(transparent 60%, #ffa500 0%);",
 });
 
-const About = () => {
+const About: React.VFC = () => {
     return (
         <>
             <Box

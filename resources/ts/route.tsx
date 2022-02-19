@@ -1,21 +1,16 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Test from "./components/test";
+import { Route, Routes } from "react-router-dom";
+import Main from "./pages/Main";
 import About from "./pages/about";
 import Layout from "./pages/layout/Layout";
-import SocialLoginProgress from "./pages/layout/SocialLoginProgress";
 
 const MainRoute = () => {
     return (
         <>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index element={<Test />} />
+                    <Route index element={<Main />} />
                     <Route path="about" element={<About />} />
-                    <Route
-                        path="/login/twitter/callback"
-                        element={<SocialLoginProgress />}
-                    />
                 </Route>
             </Routes>
         </>

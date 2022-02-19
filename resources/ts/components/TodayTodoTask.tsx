@@ -11,7 +11,7 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 import React from "react";
-import { TaskState } from "./test";
+import { TaskState } from "../pages/Main";
 
 import axios from "axios";
 
@@ -36,7 +36,7 @@ const TodayTodoTask: React.VFC<PROPS> = ({ elem, setTodayTasks }) => {
             })
             .catch((err: any) => {
                 const { status, statusText } = err.response;
-                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
             });
     };
 
@@ -50,7 +50,7 @@ const TodayTodoTask: React.VFC<PROPS> = ({ elem, setTodayTasks }) => {
             })
             .catch((err: any) => {
                 const { status, statusText } = err.response;
-                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
             });
     };
 

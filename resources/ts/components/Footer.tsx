@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { ZenKurenaidoFont } from "../theme";
 import { ThemeProvider } from "@emotion/react";

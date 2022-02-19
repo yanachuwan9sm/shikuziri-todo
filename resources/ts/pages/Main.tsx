@@ -12,9 +12,9 @@ import { RowdiesFont } from "../theme";
 
 import { grey } from "@mui/material/colors";
 
-import Task from "./Task";
-import AddTask from "./AddTask";
-import TodayTodoTask from "./TodayTodoTask";
+import Task from "../components/Task";
+import AddTask from "../components/AddTask";
+import TodayTodoTask from "../components/TodayTodoTask";
 
 export interface TaskState {
     id: number;
@@ -27,7 +27,7 @@ export interface TaskState {
     };
 }
 
-const Test = () => {
+const Main = () => {
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ const Test = () => {
             setTasks(res.data);
         } catch (err: any) {
             const { status, statusText } = err.response;
-            console.log(`Error! HTTP Status: ${status} ${statusText}`);
+            // console.log(`Error! HTTP Status: ${status} ${statusText}`);
         }
     };
 
@@ -69,8 +69,8 @@ const Test = () => {
             })
             .catch((err: any) => {
                 const { status, statusText } = err.response;
-                console.log(`Error! HTTP Status: ${status} ${statusText}`);
-                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
             });
     };
 
@@ -86,7 +86,7 @@ const Test = () => {
             })
             .catch((err: any) => {
                 const { status, statusText } = err.response;
-                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
             });
     };
 
@@ -193,4 +193,4 @@ const Test = () => {
     );
 };
 
-export default Test;
+export default Main;

@@ -25312,8 +25312,7 @@ var TodayTodoTask = function TodayTodoTask(_ref) {
               })["catch"](function (err) {
                 var _err$response = err.response,
                     status = _err$response.status,
-                    statusText = _err$response.statusText;
-                console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
+                    statusText = _err$response.statusText; // console.log(`Error! HTTP Status: ${status} ${statusText}`);
               });
 
             case 4:
@@ -25339,8 +25338,7 @@ var TodayTodoTask = function TodayTodoTask(_ref) {
               })["catch"](function (err) {
                 var _err$response2 = err.response,
                     status = _err$response2.status,
-                    statusText = _err$response2.statusText;
-                console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
+                    statusText = _err$response2.statusText; // console.log(`Error! HTTP Status: ${status} ${statusText}`);
               });
 
             case 2:
@@ -25575,11 +25573,9 @@ var TodoAppBar = function TodoAppBar() {
             case 0:
               _context.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_5___default().post("api/logout").then(function (response) {
-                console.log(response);
                 localStorage.removeItem("auth");
                 dispatch((0,_features_userSlice__WEBPACK_IMPORTED_MODULE_2__.logout)());
-              })["catch"](function (error) {
-                console.log(error);
+              })["catch"](function (error) {// console.log(error);
               });
 
             case 2:
@@ -25692,292 +25688,6 @@ var TodoAppBar = function TodoAppBar() {
 
 /***/ }),
 
-/***/ "./resources/ts/components/test.tsx":
-/*!******************************************!*\
-  !*** ./resources/ts/components/test.tsx ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var _features_userSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../features/userSlice */ "./resources/ts/features/userSlice.ts");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/Box/Box.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js");
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../theme */ "./resources/ts/theme.ts");
-/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/grey.js");
-/* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Task */ "./resources/ts/components/Task.tsx");
-/* harmony import */ var _AddTask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AddTask */ "./resources/ts/components/AddTask.tsx");
-/* harmony import */ var _TodayTodoTask__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./TodayTodoTask */ "./resources/ts/components/TodayTodoTask.tsx");
-
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Test = function Test() {
-  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(_features_userSlice__WEBPACK_IMPORTED_MODULE_2__.selectUser);
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
-  /*
-  | 全ユーザーの全タスクの状態を持つステート
-  */
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      tasks = _useState2[0],
-      setTasks = _useState2[1];
-  /*
-  | 今日のタスクの状態を持つステート
-  */
-
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      todayTasks = _useState4[0],
-      setTodayTasks = _useState4[1];
-  /*
-  | 新しく追加するタスクの状態を持つステート
-  */
-
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      newTodoTitle = _useState6[0],
-      setNewTodoTitle = _useState6[1];
-
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    getTasksData();
-    getTodayTasksData();
-  }, []);
-
-  var getTasksData = function getTasksData() {
-    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var res, _err$response, status, statusText;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/tasks/shikuziri");
-
-            case 3:
-              res = _context.sent;
-              setTasks(res.data);
-              _context.next = 11;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
-              _err$response = _context.t0.response, status = _err$response.status, statusText = _err$response.statusText;
-              console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
-
-            case 11:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-  };
-
-  var getTodayTasksData = function getTodayTasksData() {
-    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/tasks/today").then(function (res) {
-                setTodayTasks(res.data);
-              })["catch"](function (err) {
-                var _err$response2 = err.response,
-                    status = _err$response2.status,
-                    statusText = _err$response2.statusText;
-                console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
-                console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
-              });
-
-            case 2:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-  };
-
-  var createTodo = function createTodo() {
-    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/task/create", {
-                title: newTodoTitle,
-                user_id: user.id
-              }).then(function (res) {
-                setTodayTasks(res.data);
-                setNewTodoTitle("");
-              })["catch"](function (err) {
-                var _err$response3 = err.response,
-                    status = _err$response3.status,
-                    statusText = _err$response3.statusText;
-                console.log("Error! HTTP Status: ".concat(status, " ").concat(statusText));
-              });
-
-            case 2:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    sx: {
-      width: "100%",
-      maxWidth: "700px",
-      m: "auto",
-      minHeight: "100vh"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignContent: "center"
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    sx: {
-      py: 10
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_emotion_react__WEBPACK_IMPORTED_MODULE_11__.a, {
-    theme: _theme__WEBPACK_IMPORTED_MODULE_5__.RowdiesFont
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    variant: "h3",
-    component: "div",
-    align: "center",
-    color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
-    sx: {
-      fontWeight: "bold"
-    }
-  }, "Today`s Todo")), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    sx: {
-      py: 5,
-      px: 3,
-      my: 3,
-      mx: 2,
-      bgcolor: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
-      borderRadius: 10
-    }
-  }, user.id ? react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_AddTask__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    title: newTodoTitle,
-    setTitle: setNewTodoTitle,
-    createTodoHandle: createTodo
-  }), todayTasks !== null && todayTasks !== undefined && todayTasks.length > 0 && todayTasks.map(function (elem) {
-    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_TodayTodoTask__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      elem: elem,
-      setTodayTasks: setTodayTasks
-    });
-  })) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    variant: "body1",
-    component: "div",
-    align: "center",
-    sx: {
-      fontWeight: "bold"
-    }
-  }, "TODO\u3092\u4F5C\u6210\u3059\u308B\u306B\u306F\u30ED\u30B0\u30A4\u30F3\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059", react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), "\u30ED\u30B0\u30A4\u30F3\u306FTwitter\u9023\u643A\u306E\u307F\u3067\u3059\u3002")))), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_emotion_react__WEBPACK_IMPORTED_MODULE_11__.a, {
-    theme: _theme__WEBPACK_IMPORTED_MODULE_5__.RowdiesFont
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    variant: "h3",
-    component: "div",
-    align: "center",
-    color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
-    sx: {
-      fontWeight: "bold"
-    }
-  }, "Shikuziri Todo")), tasks ? tasks.map(function (elem) {
-    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Task__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      elem: elem,
-      buttonhandle: function buttonhandle() {
-        return navigate("/share");
-      }
-    });
-  }) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, "NO DATA"))));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test);
-
-/***/ }),
-
 /***/ "./resources/ts/features/userSlice.ts":
 /*!********************************************!*\
   !*** ./resources/ts/features/userSlice.ts ***!
@@ -26065,6 +25775,289 @@ if (document.getElementById("app")) {
 
 /***/ }),
 
+/***/ "./resources/ts/pages/Main.tsx":
+/*!*************************************!*\
+  !*** ./resources/ts/pages/Main.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _features_userSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../features/userSlice */ "./resources/ts/features/userSlice.ts");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/Box/Box.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../theme */ "./resources/ts/theme.ts");
+/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/grey.js");
+/* harmony import */ var _components_Task__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Task */ "./resources/ts/components/Task.tsx");
+/* harmony import */ var _components_AddTask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/AddTask */ "./resources/ts/components/AddTask.tsx");
+/* harmony import */ var _components_TodayTodoTask__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/TodayTodoTask */ "./resources/ts/components/TodayTodoTask.tsx");
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Main = function Main() {
+  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(_features_userSlice__WEBPACK_IMPORTED_MODULE_2__.selectUser);
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+  /*
+  | 全ユーザーの全タスクの状態を持つステート
+  */
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      tasks = _useState2[0],
+      setTasks = _useState2[1];
+  /*
+  | 今日のタスクの状態を持つステート
+  */
+
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      todayTasks = _useState4[0],
+      setTodayTasks = _useState4[1];
+  /*
+  | 新しく追加するタスクの状態を持つステート
+  */
+
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      newTodoTitle = _useState6[0],
+      setNewTodoTitle = _useState6[1];
+
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getTasksData();
+    getTodayTasksData();
+  }, []);
+
+  var getTasksData = function getTasksData() {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res, _err$response, status, statusText;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/tasks/shikuziri");
+
+            case 3:
+              res = _context.sent;
+              setTasks(res.data);
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _err$response = _context.t0.response, status = _err$response.status, statusText = _err$response.statusText; // console.log(`Error! HTTP Status: ${status} ${statusText}`);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+  };
+
+  var getTodayTasksData = function getTodayTasksData() {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/tasks/today").then(function (res) {
+                setTodayTasks(res.data);
+              })["catch"](function (err) {
+                var _err$response2 = err.response,
+                    status = _err$response2.status,
+                    statusText = _err$response2.statusText; // console.log(`Error! HTTP Status: ${status} ${statusText}`);
+                // console.log(`Error! HTTP Status: ${status} ${statusText}`);
+              });
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+  };
+
+  var createTodo = function createTodo() {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/task/create", {
+                title: newTodoTitle,
+                user_id: user.id
+              }).then(function (res) {
+                setTodayTasks(res.data);
+                setNewTodoTitle("");
+              })["catch"](function (err) {
+                var _err$response3 = err.response,
+                    status = _err$response3.status,
+                    statusText = _err$response3.statusText; // console.log(`Error! HTTP Status: ${status} ${statusText}`);
+              });
+
+            case 2:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    sx: {
+      width: "100%",
+      maxWidth: "700px",
+      m: "auto",
+      minHeight: "100vh"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center"
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    sx: {
+      py: 10
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_emotion_react__WEBPACK_IMPORTED_MODULE_11__.a, {
+    theme: _theme__WEBPACK_IMPORTED_MODULE_5__.RowdiesFont
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    variant: "h3",
+    component: "div",
+    align: "center",
+    color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
+    sx: {
+      fontWeight: "bold"
+    }
+  }, "Today`s Todo")), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_system__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    sx: {
+      py: 5,
+      px: 3,
+      my: 3,
+      mx: 2,
+      bgcolor: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
+      borderRadius: 10
+    }
+  }, user.id ? react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_AddTask__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    title: newTodoTitle,
+    setTitle: setNewTodoTitle,
+    createTodoHandle: createTodo
+  }), todayTasks !== null && todayTasks !== undefined && todayTasks.length > 0 && todayTasks.map(function (elem) {
+    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_TodayTodoTask__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      elem: elem,
+      setTodayTasks: setTodayTasks
+    });
+  })) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    variant: "body1",
+    component: "div",
+    align: "center",
+    sx: {
+      fontWeight: "bold"
+    }
+  }, "TODO\u3092\u4F5C\u6210\u3059\u308B\u306B\u306F\u30ED\u30B0\u30A4\u30F3\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059", react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), "\u30ED\u30B0\u30A4\u30F3\u306FTwitter\u9023\u643A\u306E\u307F\u3067\u3059\u3002")))), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_emotion_react__WEBPACK_IMPORTED_MODULE_11__.a, {
+    theme: _theme__WEBPACK_IMPORTED_MODULE_5__.RowdiesFont
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    variant: "h3",
+    component: "div",
+    align: "center",
+    color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][50],
+    sx: {
+      fontWeight: "bold"
+    }
+  }, "Shikuziri Todo")), tasks ? tasks.map(function (elem) {
+    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components_Task__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      elem: elem,
+      buttonhandle: function buttonhandle() {
+        return navigate("/share");
+      }
+    });
+  }) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, "NO DATA"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);
+
+/***/ }),
+
 /***/ "./resources/ts/pages/about.tsx":
 /*!**************************************!*\
   !*** ./resources/ts/pages/about.tsx ***!
@@ -26076,13 +26069,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Divider/Divider.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
 /* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/Box/Box.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../theme */ "./resources/ts/theme.ts");
 
@@ -26284,43 +26277,6 @@ var Layout = function Layout() {
 
 /***/ }),
 
-/***/ "./resources/ts/pages/layout/SocialLoginProgress.tsx":
-/*!***********************************************************!*\
-  !*** ./resources/ts/pages/layout/SocialLoginProgress.tsx ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-
-
-var SocialLoginProgress = function SocialLoginProgress() {
-  var token = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.useLocation)().search;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login/twitter/callback".concat(token), {}).then(function (res) {
-      console.log(res);
-    });
-  }, []);
-  return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "p-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u8A8D\u8A3C\u4E2D", react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SocialLoginProgress);
-
-/***/ }),
-
 /***/ "./resources/ts/route.tsx":
 /*!********************************!*\
   !*** ./resources/ts/route.tsx ***!
@@ -26333,12 +26289,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var _components_test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/test */ "./resources/ts/components/test.tsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _pages_Main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Main */ "./resources/ts/pages/Main.tsx");
 /* harmony import */ var _pages_about__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/about */ "./resources/ts/pages/about.tsx");
 /* harmony import */ var _pages_layout_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/layout/Layout */ "./resources/ts/pages/layout/Layout.tsx");
-/* harmony import */ var _pages_layout_SocialLoginProgress__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/layout/SocialLoginProgress */ "./resources/ts/pages/layout/SocialLoginProgress.tsx");
-
 
 
 
@@ -26346,18 +26300,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MainRoute = function MainRoute() {
-  return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Routes, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
     path: "/",
     element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_layout_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
     index: true,
-    element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_test__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Main__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
     path: "about",
     element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_about__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
-    path: "/login/twitter/callback",
-    element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_layout_SocialLoginProgress__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }))));
 };
 

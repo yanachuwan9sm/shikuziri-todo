@@ -11,7 +11,7 @@ import { grey, green, red } from "@mui/material/colors";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 import React from "react";
-import { TaskState } from "./test";
+import { TaskState } from "../pages/Main";
 
 interface PROPS {
     elem: TaskState;
