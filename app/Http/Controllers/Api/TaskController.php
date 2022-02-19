@@ -18,15 +18,17 @@ class TaskController extends Controller
     public function shikuziriTodo()
     {
         $yesterday = Carbon::now()->subDay()->format('Y-m-d');
-        $tasks = Task::whereDate('created_at',$yesterday)
-                       ->where('done_flag', false)
-                       ->orderBy('created_at', 'asc')->get();
+
+        $tasks = Task::with('user')->whereDate('created_at', '=', $yesterday)
+                                   ->where('done_flag', false)
+                                   ->orderBy('created_at', 'asc')->get();
+
         return response()->json($tasks,200);
     }
 
-    public function TodayTodo()
+    public function TodayTodo(Request $request)
     {
-        $tasks = Task::WhereDate('created_at', date("Y-m-d") )->orderBy('created_at', 'asc')->get();
+        $tasks = Task::WhereDate('created_at', date("Y-m-d") )->where('user_id', $request->user_id)->orderBy('created_at', 'asc')->get();
         return response()->json($tasks,200);
     }
 

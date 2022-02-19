@@ -119,8 +119,17 @@ const TodoAppBar = () => {
         });
     };
 
-    const LogoutHandle = () => {
-        dispatch(logout());
+    const LogoutHandle = async () => {
+        await axios
+            .post("api/logout")
+            .then((response) => {
+                console.log(response);
+                localStorage.removeItem("auth");
+                dispatch(logout());
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -149,8 +158,17 @@ const TodoAppBar = () => {
                                         component="div"
                                         sx={{ flexGrow: 1 }}
                                     >
-                                        しくじりTODO
+                                        <Button
+                                            variant="text"
+                                            size="large"
+                                            sx={{ color: grey[50] }}
+                                            onClick={() => navigate("/")}
+                                        >
+                                            しくじりTODO
+                                        </Button>
                                     </Typography>
+
+                                    <Button variant="text"></Button>
 
                                     <Stack direction="row" spacing={1}>
                                         <Button

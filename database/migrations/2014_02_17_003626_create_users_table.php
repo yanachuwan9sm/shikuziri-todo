@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('twitter_id');
             $table->string('avatar');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

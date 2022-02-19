@@ -98,7 +98,7 @@ const About = () => {
                             }}
                         >
                             <img
-                                src={`${window.location.origin}/img/todoimage.jpg`}
+                                src={`${window.location.origin}/img/todoImage1.png`}
                                 alt="image"
                                 width="350px"
                             />
@@ -142,7 +142,7 @@ const About = () => {
                             }}
                         >
                             <img
-                                src={`${window.location.origin}/img/shikuziriImage.png`}
+                                src={`${window.location.origin}/img/todoImage2.png`}
                                 alt="image"
                                 width="350px"
                             />
@@ -186,7 +186,7 @@ const About = () => {
                             }}
                         >
                             <img
-                                src={`${window.location.origin}/img/shikuziriImage.png`}
+                                src={`${window.location.origin}/img/notworking.png`}
                                 alt="image"
                                 width="350px"
                             />
