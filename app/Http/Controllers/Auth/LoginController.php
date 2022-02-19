@@ -38,7 +38,7 @@ class LoginController extends Controller
 
             $new_user = User::where('twitter_id', $social_user->getId())->first();
 
-            if(Auth::loginUsingId($new_user->id,true)){
+            if(Auth::loginUsingId($new_user->id)){
                 return redirect('/');
             }
 
@@ -46,7 +46,7 @@ class LoginController extends Controller
         }
         else //login
         {
-            if(Auth::loginUsingId($user->id,true)){
+            if(Auth::loginUsingId($user->id)){
                 return redirect('/');
             }
             throw new Exception('ログインに失敗しました。再度お試しください');      
