@@ -39,7 +39,7 @@ class TaskController extends Controller
         $task->user_id = $request->user_id;
         $task->save();
 
-        $tasks = Task::WhereDate('created_at', date("Y-m-d") )->orderBy('created_at', 'asc')->get();
+        $tasks = Task::WhereDate('created_at', date("Y-m-d") )->where('user_id', $request->user_id)->orderBy('created_at', 'asc')->get();
         return response()->json($tasks,200);
     }
 
@@ -48,7 +48,7 @@ class TaskController extends Controller
         $task = Task::find($request->id);
         $task->done_flag = $request->done_flag;
         $task->save();
-        $tasks = Task::WhereDate('created_at', date("Y-m-d"))->orderBy('created_at', 'asc')->get();
+        $tasks = Task::WhereDate('created_at', date("Y-m-d"))->where('user_id', $request->user_id)->orderBy('created_at', 'asc')->get();
         return response()->json($tasks,200);
     }
 
@@ -57,7 +57,7 @@ class TaskController extends Controller
         $task = Task::find($request->id);
         $task->delete();
 
-        $tasks = Task::WhereDate('created_at', date("Y-m-d"))->orderBy('created_at', 'asc')->get();
+        $tasks = Task::WhereDate('created_at', date("Y-m-d"))->where('user_id', $request->user_id)->orderBy('created_at', 'asc')->get();
         return response()->json($tasks,200);
     }
 }

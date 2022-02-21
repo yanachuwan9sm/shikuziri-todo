@@ -25230,19 +25230,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItem/ListItem.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/IconButton/IconButton.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemButton/ListItemButton.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemIcon/ListItemIcon.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemText/ListItemText.js");
-/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/green.js");
-/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/red.js");
-/* harmony import */ var _mui_icons_material_Delete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/icons-material/Delete */ "./node_modules/@mui/icons-material/Delete.js");
-/* harmony import */ var _mui_icons_material_WorkOutline__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/WorkOutline */ "./node_modules/@mui/icons-material/WorkOutline.js");
-/* harmony import */ var _mui_icons_material_TaskAlt__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/icons-material/TaskAlt */ "./node_modules/@mui/icons-material/TaskAlt.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItem/ListItem.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemButton/ListItemButton.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemIcon/ListItemIcon.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ListItemText/ListItemText.js");
+/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/green.js");
+/* harmony import */ var _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material/colors */ "./node_modules/@mui/material/colors/red.js");
+/* harmony import */ var _mui_icons_material_Delete__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/icons-material/Delete */ "./node_modules/@mui/icons-material/Delete.js");
+/* harmony import */ var _mui_icons_material_WorkOutline__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/icons-material/WorkOutline */ "./node_modules/@mui/icons-material/WorkOutline.js");
+/* harmony import */ var _mui_icons_material_TaskAlt__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/TaskAlt */ "./node_modules/@mui/icons-material/TaskAlt.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _features_userSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../features/userSlice */ "./resources/ts/features/userSlice.ts");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
 
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
@@ -25285,9 +25287,12 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 
+
+
 var TodayTodoTask = function TodayTodoTask(_ref) {
   var elem = _ref.elem,
       setTodayTasks = _ref.setTodayTasks;
+  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(_features_userSlice__WEBPACK_IMPORTED_MODULE_2__.selectUser);
 
   var ToggleDoneTask = function ToggleDoneTask(taskId, done_flag) {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -25304,9 +25309,10 @@ var TodayTodoTask = function TodayTodoTask(_ref) {
 
             case 2:
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/task/update_flag", {
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/task/update_flag", {
                 id: taskId,
-                done_flag: done_flag
+                done_flag: done_flag,
+                user_id: user.id
               }).then(function (res) {
                 setTodayTasks(res.data);
               })["catch"](function (err) {
@@ -25331,8 +25337,9 @@ var TodayTodoTask = function TodayTodoTask(_ref) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/delete", {
-                id: taskId
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/delete", {
+                id: taskId,
+                user_id: user.id
               }).then(function (res) {
                 setTodayTasks(res.data);
               })["catch"](function (err) {
@@ -25350,31 +25357,31 @@ var TodayTodoTask = function TodayTodoTask(_ref) {
     }));
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
     key: elem.id,
-    secondaryAction: react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    secondaryAction: react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
       edge: "end",
       "aria-label": "delete",
       onClick: function onClick() {
         return deleteTask(elem.id);
       }
-    }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_Delete__WEBPACK_IMPORTED_MODULE_5__["default"], null))),
+    }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_Delete__WEBPACK_IMPORTED_MODULE_7__["default"], null))),
     disablePadding: true
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
     role: undefined,
     onClick: function onClick() {
       ToggleDoneTask(elem.id, !elem.done_flag);
     },
     dense: true
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, elem.done_flag ? react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_TaskAlt__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    sx: {
-      color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_9__["default"][500]
-    }
-  }) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_WorkOutline__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], null, elem.done_flag ? react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_TaskAlt__WEBPACK_IMPORTED_MODULE_10__["default"], {
     sx: {
       color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_11__["default"][500]
     }
-  })), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }) : react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_icons_material_WorkOutline__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    sx: {
+      color: _mui_material_colors__WEBPACK_IMPORTED_MODULE_13__["default"][500]
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
     id: "".concat(elem.id),
     primary: "".concat(elem.title)
   }))));

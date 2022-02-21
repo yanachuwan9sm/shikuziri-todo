@@ -12,6 +12,8 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 import React from "react";
 import { TaskState } from "../pages/Main";
+import { selectUser, UserState } from "../features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 import axios from "axios";
 
@@ -21,6 +23,8 @@ interface PROPS {
 }
 
 const TodayTodoTask: React.VFC<PROPS> = ({ elem, setTodayTasks }) => {
+    const user = useSelector(selectUser);
+
     const ToggleDoneTask = async (taskId: number, done_flag: boolean) => {
         if (taskId === undefined || done_flag === undefined) {
             return;
@@ -30,6 +34,7 @@ const TodayTodoTask: React.VFC<PROPS> = ({ elem, setTodayTasks }) => {
             .post("/api/task/update_flag", {
                 id: taskId,
                 done_flag: done_flag,
+                user_id: user.id,
             })
             .then((res) => {
                 setTodayTasks(res.data);
@@ -44,6 +49,7 @@ const TodayTodoTask: React.VFC<PROPS> = ({ elem, setTodayTasks }) => {
         await axios
             .post("/api/delete", {
                 id: taskId,
+                user_id: user.id,
             })
             .then((res) => {
                 setTodayTasks(res.data);
